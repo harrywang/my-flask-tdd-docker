@@ -1,7 +1,17 @@
-
+# project/config.py
 
 
 class BaseConfig:
     TESTING = False
-    FLASK_APP=project/__init__.py
-    FLASK_ENV=development
+
+
+class DevelopmentConfig(BaseConfig):
+    pass
+
+
+class TestingConfig(BaseConfig):
+    TESTING = True
+
+
+class ProductionConfig(BaseConfig):
+    pass

@@ -11,3 +11,13 @@ $ export FLASK_APP=project/__init__.py
 $ export FLASK_ENV=development
 $ python manage.py run
 ```
+
+# Docker
+
+```
+$ docker-compose build
+$ docker-compose up -d
+$ docker-compose stop
+$ docker-compose up -d --build
+$ docker-compose logs
+```
