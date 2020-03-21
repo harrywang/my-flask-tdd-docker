@@ -1,13 +1,14 @@
 version: '3.7'
 
 services:
+
     users:
         build:
             context: .
             dockerfile: Dockerfile
         entrypoint: ['/usr/src/app/entrypoint.sh']
         volumes:
-            - .:/user/src/app
+            - '.:/user/src/app'
         ports:
             - 5001:5000
         environment:

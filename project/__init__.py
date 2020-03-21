@@ -1,6 +1,6 @@
 # project/__init__.py
 
-from flask import Flask, jsonify
+from flask import Flask
 from flask_restx import Resource, Api
 from flask_sqlalchemy import SQLAlchemy
 
@@ -14,8 +14,8 @@ app_settings = os.getenv('APP_SETTINGS')
 app.config.from_object(app_settings)
 
 # see log using docker-compose logs
-import sys
-print(app.config, file=sys.stderr)
+# import sys
+# print(app.config, file=sys.stderr)
 
 # setup database
 db = SQLAlchemy(app)
@@ -36,7 +36,7 @@ class Ping (Resource):
     def get(self):
         return {
             'status': 'success',
-            'message': 'pong pong',
+            'message': 'pong!!!',
         }
 
 
