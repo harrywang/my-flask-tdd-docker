@@ -31,3 +31,25 @@ $ docker-compose stop
 $ docker system prune --volumes
 $ docker-compose up -d --build
 ```
+
+heroku:
+
+check: http://flask-tdd.herokuapp.com/users, http://flask-tdd.herokuapp.com/ping
+
+```
+$ heroku create flask-tdd
+$ heroku login
+$ heroku addons:create heroku-postgresql:hobby-dev --app flask-tdd
+$ docker build -f Dockerfile.prod -t registry.heroku.com/flask-tdd/web .
+$ heroku config:get DATABASE_URL --app flask-tdd
+postgres://vlooduhjgnbnqz:34f9549c24f1f30040953b1953b0f37897e73c1396160d12212c17431d8807ee@ec2-35-174-88-65.compute-1.amazonaws.com:5432/d66i6mdu7av344
+$ export DATABASE_URL=postgres://vlooduhjgnbnqz:34f9549c24f1f30040953b1953b0f37897e73c1396160d12212c17431d8807ee@ec2-35-174-88-65.compute-1.amazonaws.com:5432/d66i6mdu7av344
+$ docker run --name flask-tdd -e "PORT=8765" -p 5002:8765 registry.heroku.com/flask-tdd/web:latest
+$ docker rm flask-tdd
+$ docker push registry.heroku.com/flask-tdd/web:latest
+$ heroku container:release web --app flask-tdd
+$ heroku run python manage.py recreate_db --app flask-tdd
+$ heroku run python manage.py seed_db --app flask-tdd
+$ brew install httpie
+$ http --json POST https://flask-tdd.herokuapp.com/users username=hello email=hello@world.com
+```
