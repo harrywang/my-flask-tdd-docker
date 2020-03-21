@@ -1,16 +1,10 @@
 # project/__init__.py
-
-
 import os
-
 from flask import Flask  # new
 from flask_sqlalchemy import SQLAlchemy
 
-
 # instantiate the db
 db = SQLAlchemy()
-
-
 
 def create_app(script_info=None):
 

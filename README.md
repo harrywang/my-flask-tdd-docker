@@ -53,3 +53,27 @@ $ heroku run python manage.py seed_db --app flask-tdd
 $ brew install httpie
 $ http --json POST https://flask-tdd.herokuapp.com/users username=hello email=hello@world.com
 ```
+
+Test Coverage:
+
+```
+$ docker-compose up -d --build
+$ docker-compose exec users pytest "project/tests" -p no:warnings --cov="project"
+$ docker-compose exec users pytest "project/tests" -p no:warnings --cov="project" --cov-report="html"
+```
+
+Flake8 (linting), Black(formatting), isort (sorting)
+
+```
+$ docker-compose up -d --build
+$ docker-compose exec users flake8 project
+$ docker-compose exec users black project --check
+$ docker-compose exec users black project --diff
+$ docker-compose exec users black project
+$ docker-compose exec users /bin/sh -c "isort project/*/*.py --check-only"
+$ docker-compose exec users /bin/sh -c "isort project/*/*.py --diff"
+$ docker-compose exec users /bin/sh -c "isort project/*/*.py"
+$ docker-compose exec users flake8 project
+$ docker-compose exec users black project --check
+$ docker-compose exec users /bin/sh -c "isort project/*/*.py --check-only"
+```
